@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: login to docker registry
-        run: docker login -u ${{ secrets.ALIYUN_DOCKER_USER_NAME }} -p '${{ secrets.ALIYUN_DOCKER_PASSWORD }}' registry.cn-shanghai.aliyuncs.com
+        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p '${{ secrets.DOCKERHUB_PASSWORD }}'
 
       - name: Build docker image
         run: docker compose --profile ${{ matrix.profile }} build --progress plain
@@ -31,7 +31,7 @@ jobs:
       - name: Push docker image
         run: |
           DATE_STR=$(date -u +"%Y%m%d")
-          IMAGE_NAME="registry.cn-shanghai.aliyuncs.com/jcjy-docker/comfyui"
-          TAG_NAME=${DATE_STR}-${{ github.ref_name }}
+          IMAGE_NAME="rensqwq/comfyui"
+          TAG_NAME=${{ github.ref_name }}-${DATE_STR}
           docker tag webui-docker-${{ matrix.profile }} $IMAGE_NAME:$TAG_NAME
           docker push $IMAGE_NAME:$TAG_NAME
