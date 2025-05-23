@@ -39,7 +39,7 @@ RUN . /clone.sh ComfyUI_essentials https://github.com/cubiq/ComfyUI_essentials.g
 # RUN . /clone.sh ComfyUI-Impact-Subpack https://github.com/ltdrdata/ComfyUI-Impact-Subpack.git 207415285295707316cb5a2a6a9e0bad56dc8f9c
 # RUN . /clone.sh ComfyUI-depth-fm https://github.com/kijai/ComfyUI-depth-fm.git 3d73bbe6265e09989e60aafb42a79e289cab6dfd
 
-FROM pytorch/pytorch:2.3.0-cuda12.1-cudnn8-runtime
+FROM pytorch/pytorch:2.3.0-cuda12.1-cudnn8-runtime as comfyui
 
 ENV DEBIAN_FRONTEND=noninteractive PIP_PREFER_BINARY=1
 
@@ -69,3 +69,20 @@ ENV NVIDIA_VISIBLE_DEVICES=all PYTHONPATH="${PYTHONPATH}:${PWD}" CLI_ARGS=""
 EXPOSE 7860
 ENTRYPOINT ["/docker/entrypoint.sh"]
 CMD python -u main.py --listen --port 7860 ${CLI_ARGS}
+
+
+
+FROM comfyui
+
+ENV POD_NB_PREFIX=/proxy-jupyter
+ENV SD_GW_UUID=8cd4f58d-39cf-4c98-8a76-fc329f2f9067
+
+RUN curl -L -o caddy_2.9.1_linux_amd64.deb https://github.com/caddyserver/caddy/releases/download/v2.9.1/caddy_2.9.1_linux_amd64.deb && dpkg -i caddy_2.9.1_linux_amd64.deb && rm caddy_2.9.1_linux_amd64.deb
+
+RUN echo 'export PS1="\[\e]0;\u@comfyui: \w\a\]${debian_chroot:+($debian_chroot)}\u@comfyui:\w\$ "' >>  /root/.bashrc
+
+COPY caddy/initialize.sh /usr/local/bin/code-server/initialize.sh
+
+COPY caddy/Caddyfile .
+
+ENTRYPOINT [ "/usr/local/bin/code-server/initialize.sh" ]

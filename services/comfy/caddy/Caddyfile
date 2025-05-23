@@ -1,0 +1,13 @@
+:80 {
+    handle_path /code-server/* {
+        reverse_proxy http://127.0.0.1:8080 {
+            header_up X-Forwarded-For {remote_host}
+        }
+    }
+
+    handle_path {$POD_NB_PREFIX}/{$SD_GW_UUID}/* {
+        reverse_proxy http://127.0.0.1:8080 {
+            header_up X-Forwarded-For {remote_host}
+        }
+    }
+}
