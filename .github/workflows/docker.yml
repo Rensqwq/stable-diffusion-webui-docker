@@ -38,6 +38,6 @@ jobs:
         run: |
           DATE_STR=$(date -u +"%Y%m%d")
           IMAGE_NAME="rensqwq/comfyui"
-          TAG_NAME=${{ github.ref_name }}-${DATE_STR}
+          TAG_NAME=${DATE_STR}
           docker tag webui-docker-${{ matrix.profile }} $IMAGE_NAME:$TAG_NAME
           docker push $IMAGE_NAME:$TAG_NAME
