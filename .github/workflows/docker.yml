@@ -38,6 +38,7 @@ jobs:
         run: |
           DATE_STR=$(date -u +"%Y%m%d")
           IMAGE_NAME="rensqwq/comfyui"
-          TAG_NAME=${DATE_STR}
+          RAND_SUFFIX=$(openssl rand -base64 12 | tr -dc 'a-zA-Z0-9' | head -c 8)
+          TAG_NAME=${DATE_STR}-${RAND_SUFFIX}
           docker tag webui-docker-${{ matrix.profile }} $IMAGE_NAME:$TAG_NAME
           docker push $IMAGE_NAME:$TAG_NAME
