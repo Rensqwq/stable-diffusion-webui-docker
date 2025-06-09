@@ -20,6 +20,7 @@ done
 
 pip install xformers==0.0.26.post1 onnxruntime==1.18.0 onnxruntime-gpu==1.18.0
 
+mkdir -p /stable-diffusion/user/default/
 echo '{"AGL.Locale":"zh-CN"}' >> /stable-diffusion/user/default/comfy.settings.json
 # mkdir -p /data/config/auto/extensions
 # cd /data/config/auto/extensions
