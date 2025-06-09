@@ -19,6 +19,8 @@ for installscript in "${list[@]}"; do
 done
 
 pip install xformers==0.0.26.post1 onnxruntime==1.18.0 onnxruntime-gpu==1.18.0
+
+echo '{"AGL.Locale":"zh-CN"}' >> /stable-diffusion/user/default/comfy.settings.json
 # mkdir -p /data/config/auto/extensions
 # cd /data/config/auto/extensions
 # git clone https://github.com/Mikubill/sd-webui-controlnet.git
