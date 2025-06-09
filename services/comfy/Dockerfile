@@ -7,7 +7,7 @@ COPY clone.sh /clone.sh
 RUN . /clone.sh comfyui_controlnet_aux https://github.com/Fannovel16/comfyui_controlnet_aux.git 83463c2e4b04e729268e57f638b4212e0da4badc
 # RUN . /clone.sh ComfyUI-Custom-Scripts https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git 9f7b3215e6af317603056a9a1666bf6e83e28835
 # RUN . /clone.sh ComfyUI-Impact-Pack https://github.com/ltdrdata/ComfyUI-Impact-Pack.git 2708eba825335387de60220d9e461f6e4ab63bc0
-# RUN . /clone.sh AIGODLIKE-ComfyUI-Translation https://github.com/AIGODLIKE/AIGODLIKE-ComfyUI-Translation.git 10a2e68255cc877abfcbeeb9540c0494b6be1a23
+RUN . /clone.sh AIGODLIKE-ComfyUI-Translation https://github.com/AIGODLIKE/AIGODLIKE-ComfyUI-Translation.git 10a2e68255cc877abfcbeeb9540c0494b6be1a23
 # RUN . /clone.sh ComfyUI-Custom-Scripts https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git 9f7b3215e6af317603056a9a1666bf6e83e28835
 # RUN . /clone.sh ComfyUI_LayerStyle_Advance https://github.com/chflame163/ComfyUI_LayerStyle_Advance.git 89aadaa6c0b8c9adfab86f5d0196f1d13383d47c
 # RUN . /clone.sh ComfyUI-SUPIR https://github.com/kijai/ComfyUI-SUPIR.git 53fc4f82f139e0875e1f4f3716fbeafa073e4242
