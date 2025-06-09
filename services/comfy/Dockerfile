@@ -50,7 +50,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
   git clone https://github.com/comfyanonymous/ComfyUI.git ${ROOT} && \
   cd ${ROOT} && \
   git checkout master && \
-  git reset --hard 9aac21f894a122ddb8d825c57ad61c0db5e630db && \
+  git reset --hard 75c1c757d90ca891eff823893248ef8b51d31d01 && \
   pip install -r requirements.txt
 
 COPY --from=download /repositories/ /data/config/comfy/custom_nodes
